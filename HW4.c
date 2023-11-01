@@ -1,14 +1,23 @@
 #include <stdio.h>
-int point(int chess[8][8],int i,int j,int next[8][8],int next1[8][8],int next2[8][8],int color)  {
+int point(int chess[8][8],int i,int j,int next[8][8],int next1[8][8],int next2[8][8])  {
     int n=1;
-    int next[8][8]={};
-    int next1[8][8]={};
-    int next2[8][8]={};
-    if(chess[i][j]==0) {
-        color=0;
+    for(int a=0;a<8;a++)
+        {for(int b=0;b<8;b++) {
+            next[a][b]=0;
+        }
     }
-    if (chess[i][j]==1) {
-            color=1;
+    for(int a=0;a<8;a++)
+        {for(int b=0;b<8;b++) {
+            next1[a][b]=0;
+        }
+    }
+    for(int a=0;a<8;a++)
+        {for(int b=0;b<8;b++) {
+            next2[a][b]=0;
+        }
+    }
+    if(chess[i][j]==1) {
+        
         for(int dx=-1;dx<=1;dx++) {
             for(int dy=-1;dy<=1;dy++) {
                 if(chess[i+dx][j+dy]==2) {
@@ -28,8 +37,7 @@ int point(int chess[8][8],int i,int j,int next[8][8],int next1[8][8],int next2[8
             }
         }
     }
-    if (chess[i][j]==2) {
-        color=2;
+    else if (chess[i][j]==2) {
         for(int dx=-1;dx<=1;dx++) {
             for(int dy=-1;dy<=1;dy++) {
                 if(chess[i+dx][j+dy]==1) {
@@ -91,19 +99,19 @@ int point(int chess[8][8],int i,int j,int next[8][8],int next1[8][8],int next2[8
 }
 int main() {
     int i,j,color;
-    int chess[8][8]={{0,0,0,0,0,0,0,0},
-                     {0,0,0,0,0,0,0,0},
-                     {0,0,0,0,0,0,0,0},
-                     {0,0,0,1,2,0,0,0},
-                     {0,0,0,2,1,0,0,0},
-                     {0,0,0,0,0,0,0,0},
-                     {0,0,0,0,0,0,0,0},
-                     {0,0,0,0,0,0,0,0}};
-    int next[8][8];
-    int next1[8][8];
-    int next2[8][8];
+    int chess[8][8]
+    int next[8][8]={};
+    int next1[8][8]={};
+    int next2[8][8]={};
+    for(int m=0;m<8;m++){
+        for(int n=0;n<8;n++){
+            scanf("%d",&chess[m][n]);
+
+        }
+    }
     scanf("%d%d",&i,&j);
-    point(chess[8][8],i,j,&next[8][8],&next1[8][8],&next2[8][8],&color);
+    point(chess,i,j,next,next1,next2);
+    color=chess[i][j];
     if(color==1||color==2) {
         for(int a=0;a<8;a++) {
             for(int b=0;b<8;b++) {
@@ -113,7 +121,10 @@ int main() {
             }
         }
     }
-    printf("¶Â¤l¥i¤U¦ì¤l");
+    else if(color==0) {
+        printf("ç©º\n");
+    }
+    printf("\né»‘å­å¯ä¸‹ä½å­\n");
     for(int a=0;a<8;a++) {
         for(int b=0;b<8;b++) {
             if(next1[a][b]==1) {
@@ -121,7 +132,7 @@ int main() {
             }
         }
     }
-    printf("¥Õ¤l¥i¤U¦ì¤l");
+    printf("\nç™½å­å¯ä¸‹ä½å­\n");
     for(int a=0;a<8;a++) {
         for(int b=0;b<8;b++) {
             if(next2[a][b]==2) {
